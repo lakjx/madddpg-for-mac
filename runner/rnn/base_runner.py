@@ -5,8 +5,8 @@ import torch
 import time
 from tensorboardX import SummaryWriter
 
-from offpolicy.utils.rec_buffer import RecReplayBuffer, PrioritizedRecReplayBuffer
-from offpolicy.utils.util import DecayThenFlatSchedule
+from utils.rec_buffer import RecReplayBuffer, PrioritizedRecReplayBuffer
+from utils.util import DecayThenFlatSchedule
 
 class RecRunner(object):
     """Base class for training recurrent policies."""
@@ -109,13 +109,13 @@ class RecRunner(object):
 
         # initialize all the policies and organize the agents corresponding to each policy
         if self.algorithm_name == "rmatd3":
-            from offpolicy.algorithms.r_matd3.algorithm.rMATD3Policy import R_MATD3Policy as Policy
-            from offpolicy.algorithms.r_matd3.r_matd3 import R_MATD3 as TrainAlgo
+            from algorithms.r_matd3.algorithm.rMATD3Policy import R_MATD3Policy as Policy
+            from algorithms.r_matd3.r_matd3 import R_MATD3 as TrainAlgo
         elif self.algorithm_name == "rmaddpg":
             assert self.actor_train_interval_step == 1, (
                 "rmaddpg only supports actor_train_interval_step=1.")
-            from offpolicy.algorithms.r_maddpg.algorithm.rMADDPGPolicy import R_MADDPGPolicy as Policy
-            from offpolicy.algorithms.r_maddpg.r_maddpg import R_MADDPG as TrainAlgo
+            from algorithms.r_maddpg.algorithm.rMADDPGPolicy import R_MADDPGPolicy as Policy
+            from algorithms.r_maddpg.r_maddpg import R_MADDPG as TrainAlgo
         # elif self.algorithm_name == "rmasac":
         #     assert self.actor_train_interval_step == 1, (
         #         "rmasac only support actor_train_interval_step=1.")

@@ -2,7 +2,7 @@ import numpy as np
 import torch
 import time
 
-from offpolicy.runner.rnn.base_runner import RecRunner
+from runner.rnn.base_runner import RecRunner
 
 class MPERunner(RecRunner):
     """Runner class for Multiagent Particle Envs (MPE). See parent class for more information."""

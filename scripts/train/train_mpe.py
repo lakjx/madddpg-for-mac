@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 import numpy as np
 from pathlib import Path
@@ -8,11 +8,11 @@ import socket
 import wandb
 import setproctitle
 import torch
-from offpolicy.config import get_config
-from offpolicy.utils.util import get_cent_act_dim, get_dim_from_space
-from offpolicy.envs.mpe.MPE_Env import MPEEnv
-from offpolicy.envs.macprotocol import MacProtocolEnv as MacEnv
-from offpolicy.envs.env_wrappers import DummyVecEnv, SubprocVecEnv
+from config import get_config
+from utils.util import get_cent_act_dim, get_dim_from_space
+from envs.mpe.MPE_Env import MPEEnv
+from envs.macprotocol import MacProtocolEnv as MacEnv
+from envs.env_wrappers import DummyVecEnv, SubprocVecEnv
 
 
 def make_train_env(all_args):
@@ -58,13 +58,13 @@ def parse_args(args, parser):
                         default='Mac Protocol', help="Which scenario to run on")
     parser.add_argument("--num_landmarks", type=int, default=3)
     parser.add_argument('--num_agents', type=int,
-                        default=5, help="number of agents")
+                        default=6, help="number of agents")
     parser.add_argument('--use_same_share_obs', action='store_false',
                         default=True, help="Whether to use available actions")
 
     parser.add_argument('--rho', type=int, default=3)
     parser.add_argument('--recent_k', type=int, default=3)
-    parser.add_argument('--UE_num', type=int, default=4)
+    parser.add_argument('--UE_num', type=int, default=5)
     parser.add_argument('--UE_txbuff_len', type=int, default=20)
     parser.add_argument('--p_SDU_arrival', type=float, default=0.48)
     parser.add_argument('--tbl_error_rate', type=float, default=1e-2)
@@ -165,12 +165,12 @@ def main(args):
 
     # choose algo
     if all_args.algorithm_name in ["rmatd3", "rmaddpg", "rmasac", "qmix", "vdn"]:
-        from offpolicy.runner.rnn.mpe_runner import MPERunner as Runner
+        from runner.rnn.mpe_runner import MPERunner as Runner
         assert all_args.n_rollout_threads == 1, (
             "only support 1 env in recurrent version.")
         eval_env = env
     elif all_args.algorithm_name in ["matd3", "maddpg", "masac", "mqmix", "mvdn"]:
-        from offpolicy.runner.mlp.mpe_runner import MPERunner as Runner
+        from runner.mlp.mpe_runner import MPERunner as Runner
         eval_env = make_eval_env(all_args)
     else:
         raise NotImplementedError

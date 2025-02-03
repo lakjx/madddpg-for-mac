@@ -8,7 +8,7 @@ def get_config():
     # prepare parameters
     parser.add_argument("--algorithm_name", type=str, default="rmaddpg", choices=[
                         "rmatd3", "rmaddpg", "rmasac", "qmix", "vdn", "matd3", "maddpg", "masac", "mqmix", "mvdn"])
-    parser.add_argument("--experiment_name", type=str, default="4UEs")
+    parser.add_argument("--experiment_name", type=str, default="5UEs")
     parser.add_argument("--seed", type=int, default=1,
                         help="Random seed for numpy/torch")
     parser.add_argument("--cuda", action='store_false', default=True)
@@ -110,7 +110,7 @@ def get_config():
     parser.add_argument("--weight_decay", type=float, default=0)
 
     # algo common parameters
-    parser.add_argument('--batch_size', type=int, default=256,
+    parser.add_argument('--batch_size', type=int, default=512,
                         help="Number of buffer transitions to train on at once")
     parser.add_argument('--gamma', type=float, default=0.99,
                         help="Discount factor for env")
@@ -152,7 +152,7 @@ def get_config():
                         help="Dimension of hidden layer of hypernetwork (only applicable if hypernet_layers == 2")
 
     # exploration parameters
-    parser.add_argument('--num_random_episodes', type=int, default=256,
+    parser.add_argument('--num_random_episodes', type=int, default=512,
                         help="Number of episodes to add to buffer with purely random actions")
     parser.add_argument('--epsilon_start', type=float, default=1.0,
                         help="Starting value for epsilon, for eps-greedy exploration")

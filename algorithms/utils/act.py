@@ -1,6 +1,6 @@
 import numpy as np
 import torch.nn as nn
-from offpolicy.utils.util import init
+from utils.util import init
 
 class ACTLayer(nn.Module):
     def __init__(self, act_dim, hidden_size, use_orthogonal, gain):

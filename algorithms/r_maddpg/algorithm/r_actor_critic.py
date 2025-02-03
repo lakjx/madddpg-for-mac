@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
-from offpolicy.utils.util import init, to_torch
-from offpolicy.algorithms.utils.rnn import RNNBase
-from offpolicy.algorithms.utils.act import ACTLayer
+from utils.util import init, to_torch
+from algorithms.utils.rnn import RNNBase
+from algorithms.utils.act import ACTLayer
 
 class R_MADDPG_Actor(nn.Module):
     """

@@ -1,4 +1,4 @@
-from offpolicy.algorithms.r_maddpg.algorithm.r_actor_critic import R_MADDPG_Actor, R_MADDPG_Critic
+from algorithms.r_maddpg.algorithm.r_actor_critic import R_MADDPG_Actor, R_MADDPG_Critic
 
 class R_MATD3_Actor(R_MADDPG_Actor):
     """R_MATD3 Actor is identical to R_MADDPG Actor, see parent class"""

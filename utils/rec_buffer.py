@@ -1,6 +1,6 @@
 import numpy as np
-from offpolicy.utils.util import get_dim_from_space
-from offpolicy.utils.segment_tree import SumSegmentTree, MinSegmentTree
+from utils.util import get_dim_from_space
+from utils.segment_tree import SumSegmentTree, MinSegmentTree
 
 
 def _cast(x):
