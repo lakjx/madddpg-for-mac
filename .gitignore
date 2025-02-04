@@ -1,3 +1,4 @@
 scripts/results/
 *.sh
 __pycache__/
+logs/
